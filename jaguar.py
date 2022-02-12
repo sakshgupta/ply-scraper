@@ -32,7 +32,8 @@ def scrape(site, path):
     # csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w')
     # csv_file = open('data/jaguar/faucets/i-flush.csv', 'w')
     # csv_file = open('data/jaguar/faucets/jaquar-spas.csv', 'w')
-    csv_file = open('data/jaguar/faucets/jaquar-spas.csv', 'w', newline='', encoding="utf-8")
+    # csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w', newline='', encoding="utf-8")
+    csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w')
 
 
     csv_writer = csv.writer(csv_file)
@@ -119,7 +120,7 @@ def scrape(site, path):
             except Exception as e:
                 # print(e)
                 color_list = []
-                img = item_page.find('img', alt = f'Picture of {name}')['src']
+                img = item_page.find('img', title = f'Picture of {name}')['src']
                 img_links.append(img)
 
             for i in color_list:
@@ -151,7 +152,7 @@ def main():
     # scrape('https://www.jaquar.com', '/en/free_standing_bath_tubs')
     # scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
     # scrape('https://www.jaquar.com', '/en/i-flush')
-    scrape('https://www.jaquar.com', '/en/jaquar-spas')
+    scrape('https://www.jaquar.com', '/en/free_standing_bath_tubs')
 
 if __name__ == '__main__':
     main()
