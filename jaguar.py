@@ -33,7 +33,7 @@ def scrape(site, path):
     # csv_file = open('data/jaguar/faucets/i-flush.csv', 'w')
     # csv_file = open('data/jaguar/faucets/jaquar-spas.csv', 'w')
     # csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w', newline='', encoding="utf-8")
-    csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w')
+    csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w')
 
 
     csv_writer = csv.writer(csv_file)
@@ -139,8 +139,12 @@ def scrape(site, path):
             # except Exception as e:
             #     # print(e)
             #     print('color or image broken')
-                        
+            
+            name_ = item.find('h2', class_ = 'product-title').a.text
+
             csv_writer.writerow([url, name, code, description, mrp, colors, img_links])
+            # csv_writer.writerow([url, name_, code, description, mrp, colors, img_links])
+
     csv_file.close()
 
 def main():
@@ -152,7 +156,7 @@ def main():
     # scrape('https://www.jaquar.com', '/en/free_standing_bath_tubs')
     # scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
     # scrape('https://www.jaquar.com', '/en/i-flush')
-    scrape('https://www.jaquar.com', '/en/free_standing_bath_tubs')
+    scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
 
 if __name__ == '__main__':
     main()
