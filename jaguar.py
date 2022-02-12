@@ -8,10 +8,12 @@ def get_last_page(page):
     try:
         last_page = pages.find('li', class_ = 'last-page').a['data-page']
         print(f'>> last pg - {last_page}')
-    except IndexError:
+    except Exception as e:
+        # print(e)
         last_page = page.find_all('li', class_ = 'individual-page')[-1].a['data-page']
         print(f'>> last pg - {last_page}')
-    except Exception as e:
+    except IndexError:
+        print(999)
         last_page = 1
         print(f'>> last pg - {last_page}')
     return last_page
