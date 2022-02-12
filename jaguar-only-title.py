@@ -8,10 +8,12 @@ def get_last_page(page):
     try:
         last_page = pages.find('li', class_ = 'last-page').a['data-page']
         print(f'>> last pg - {last_page}')
-    except IndexError:
+    except Exception as e:
+        # print(e)
         last_page = page.find_all('li', class_ = 'individual-page')[-1].a['data-page']
         print(f'>> last pg - {last_page}')
-    except Exception as e:
+    except IndexError:
+        print(999)
         last_page = 1
         print(f'>> last pg - {last_page}')
     return last_page
@@ -89,7 +91,7 @@ def scrape(site, path):
 
             try:
                 name = item_page.find('div', class_ = 'detail-header').h1.text
-                print(name)
+                # print(name)
             except Exception as e:
                 # print(e)
                 print('how tf is the name not available??')
@@ -141,7 +143,9 @@ def scrape(site, path):
             #     print('color or image broken')
             
             name_ = item.find('h2', class_ = 'product-title').a.text
-
+            print(name_)
+            
+            # csv_writer.writerow([url, name, code, description, mrp, colors, img_links])
             csv_writer.writerow([url, name_, code, description, mrp, colors, img_links])
 
     csv_file.close()
