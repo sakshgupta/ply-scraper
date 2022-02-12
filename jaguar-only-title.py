@@ -22,7 +22,8 @@ def scrape(site, path):
     temp_page = BeautifulSoup(temp_source, 'lxml')
     last_page = get_last_page(temp_page)
 
-    csv_file = open('data/jaguar/faucets/jaquar-spas.csv', 'w', newline='', encoding="utf-8")
+    # csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w', newline='', encoding="utf-8")
+    csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w')
 
 
     csv_writer = csv.writer(csv_file)
@@ -134,7 +135,7 @@ def scrape(site, path):
     csv_file.close()
 
 def main():
-    scrape('https://www.jaquar.com', '/en/jaquar-spas')
+    scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
 
 if __name__ == '__main__':
     main()
