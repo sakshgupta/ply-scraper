@@ -22,7 +22,17 @@ def scrape(site, path):
     temp_page = BeautifulSoup(temp_source, 'lxml')
     last_page = get_last_page(temp_page)
 
-    # csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w', newline='', encoding="utf-8")
+    # csv_file = open('data/jaguar/faucets/laguna.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/continental-prime.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/queens-prime.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/body-showers.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/whirlpools-bathtubs.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/built-in-bath-tubs.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/i-flush.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/jaquar-spas.csv', 'w')
+    # csv_file = open('data/jaguar/faucets/free_standing_bath_tubs.csv', 'w', newline='', encoding="utf-8")
     csv_file = open('data/jaguar/faucets/bath-tub-fillers.csv', 'w')
 
 
@@ -78,8 +88,7 @@ def scrape(site, path):
                 break
 
             try:
-                # name = item_page.find('div', class_ = 'detail-header').h1.text
-                name = item_page.find('h2', class_ = 'product-title').a.text
+                name = item_page.find('div', class_ = 'detail-header').h1.text
                 print(name)
             except Exception as e:
                 # print(e)
@@ -111,7 +120,7 @@ def scrape(site, path):
             except Exception as e:
                 # print(e)
                 color_list = []
-                img = item_page.find('img', alt = f'Picture of {name}')['src']
+                img = item_page.find('img', title = f'Picture of {name}')['src']
                 img_links.append(img)
 
             for i in color_list:
@@ -130,13 +139,23 @@ def scrape(site, path):
             # except Exception as e:
             #     # print(e)
             #     print('color or image broken')
-                        
-            csv_writer.writerow([url, name, code, description, mrp, colors, img_links])
+            
+            name_ = item.find('h2', class_ = 'product-title').a.text
+
+            csv_writer.writerow([url, name_, code, description, mrp, colors, img_links])
+
     csv_file.close()
 
 def main():
+    # scrape('https://www.jaquar.com', '/en/laguna-faucets')
+    # scrape('https://www.jaquar.com', '/en/continental-prime')
+    # scrape('https://www.jaquar.com', '/en/queens-prime')
+    # scrape('https://www.jaquar.com', '/en/body-showers')
+    # scrape('https://www.jaquar.com', '/en/built-in-bath-tubs')
+    # scrape('https://www.jaquar.com', '/en/free_standing_bath_tubs')
+    # scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
+    # scrape('https://www.jaquar.com', '/en/i-flush')
     scrape('https://www.jaquar.com', '/en/bath-tub-fillers')
 
 if __name__ == '__main__':
     main()
-
