@@ -10,4 +10,4 @@
 	- https://www.youtube.com/watch?v=NBuED2PivbY&t=623s
 - javascript (puppeteer)
 	- https://pptr.dev/
-	- https://youtube.com/playlist?list=PLRmEk9smitaXljDN2CjwZ96o4Aj87iuC5Kv
+	- https://www.youtube.com/playlist?app=desktop&list=PLRmEk9smitaXljDN2CjwZ96o4Aj87iuC5
