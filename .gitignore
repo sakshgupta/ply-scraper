@@ -2,3 +2,4 @@
 .win-venv
 .vscode
 .devcontainer
+*.csv
