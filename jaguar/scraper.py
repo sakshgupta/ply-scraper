@@ -103,22 +103,33 @@ def scrape(site, path, file_path, is_windows):
             except Exception as e:
                 print('> no colours(?)')
                 color_list = []
-                # img = item_page.find('img', title = f'Show details for {name}')['src']
-                img = item_page.find('img', alt = f'Picture of {name}')['src']
+                try:
+                    img = item_page.find('img', title = f'Show details for {name}')['src']
+                except Exception as e_:
+                    try:
+                        img = item_page.find('img', alt = f'Picture of {name}')['src']
+                    except Exception as e__:
+                        print('-_-')
+                        img = item_page.find('img', class_ = 'container-image')['src']
                 img_links.append(img)
             
             for i in color_list:
                 c = i.find('input', type = "radio")['title']
                 try:
-                    # there are some pages in which there is no space between {name} and {c} -_-
-                    img = item_page.find('img', alt = f'Picture of {name} - {c}')['src']
+                    try:
+                        img = item_page.find('img', alt = f'Picture of {name} - {c}')['src']
+                    except Exception as e:
+                        img = item_page.find('img', title = f'Picture of {name} - {c}')['src']
                 except Exception as e:
                     try:
                         print('> no colour image(?)')
                         img = item_page.find('img', alt = f'Picture of {name}')['src']
                     except Exception as e_:
-                        print('> -_-')
-                        img = item_page.find('img', class_ = 'container-image')['src']
+                        try:
+                            img = item_page.find('img', alt = f'Picture of {name}')['src']
+                        except Exception as e__:
+                            print('> -_-')
+                            img = item_page.find('img', class_ = 'container-image')['src']
 
                 colors.append(c)
                 img_links.append(img)
@@ -137,7 +148,7 @@ if __name__ == '__main__':
     IS_WINDOWS = False
 
     SITE = 'https://www.jaquar.com'
-    PATH = '/en/flush-valves'
+    PATH = '/en/corner'
     FILE_PATH = 'test.csv'
 
     scrape(SITE, PATH, FILE_PATH, IS_WINDOWS)
